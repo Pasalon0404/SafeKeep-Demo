@@ -2037,7 +2037,190 @@
       color: var(--skb-text);
     }
 
-    /* ---- Cards (skb-card global override) ---- */
+    /* ---- Transfer Hub: transmit controls (same design as the online Courier) ---- */
+    .xfr-mode-select {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+    .xfr-mode-option {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      width: 100%;
+      padding: 0.8rem 0.95rem;
+      text-align: left;
+      font: inherit;
+      color: var(--skb-text);
+      background: var(--skb-bg-input);
+      border: 2px solid var(--skb-border);
+      border-radius: var(--skb-radius-sm);
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .xfr-mode-option:hover { border-color: var(--skb-text-dim); }
+    .xfr-mode-option.active {
+      border-color: var(--skb-primary);
+      background: color-mix(in srgb, var(--skb-primary) 9%, var(--skb-bg-input));
+    }
+    .xfr-mode-option:focus-visible { outline: 2px solid var(--skb-primary); outline-offset: 2px; }
+    .xfr-mode-icon { width: 20px; height: 20px; flex-shrink: 0; color: var(--skb-text-dim); transition: color 0.15s; }
+    .xfr-mode-option.active .xfr-mode-icon { color: var(--skb-primary); }
+    .xfr-mode-text { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+    .xfr-mode-title { font-size: 0.92rem; font-weight: 600; }
+    .xfr-mode-sub { font-size: 0.78rem; color: var(--skb-text-muted); }
+
+    .xfr-file-drop {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 1rem 1.1rem;
+      background: var(--skb-bg-input);
+      border: 2px dashed var(--skb-border);
+      border-radius: var(--skb-radius-sm);
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .xfr-file-drop:hover,
+    .xfr-file-drop.is-dragover {
+      border-color: var(--skb-primary);
+      background: color-mix(in srgb, var(--skb-primary) 6%, var(--skb-bg-input));
+    }
+    .xfr-file-drop:focus-within { outline: 2px solid var(--skb-primary); outline-offset: 2px; }
+    .xfr-file-drop.has-file { border-style: solid; }
+    .xfr-file-drop input[type="file"] {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .xfr-file-drop-icon {
+      width: 40px;
+      height: 40px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      padding: 10px;
+      border-radius: 50%;
+      color: var(--skb-primary);
+      background: color-mix(in srgb, var(--skb-primary) 14%, transparent);
+    }
+    .xfr-file-drop-text { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+    .xfr-file-drop-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--skb-text);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .xfr-file-drop-sub { font-size: 0.78rem; color: var(--skb-text-muted); }
+
+    .xfr-settings-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .xfr-slider-field {
+      padding: 0.85rem 1rem 0.75rem;
+      background: var(--skb-bg-input);
+      border: 1px solid var(--skb-border);
+      border-radius: var(--skb-radius-sm);
+    }
+    .xfr-slider-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.7rem;
+    }
+    .xfr-slider-head label {
+      margin: 0;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--skb-text-muted);
+    }
+    .xfr-slider-value {
+      font-family: var(--skb-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--skb-primary);
+      background: color-mix(in srgb, var(--skb-primary) 14%, transparent);
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    /* Range slider: orange fill up to the thumb (--fill is set by script) */
+    .xfr-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      display: block;
+      width: 100%;
+      max-width: none;
+      height: 22px;
+      margin: 0;
+      padding: 0;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      --fill: 50%;
+    }
+    .xfr-slider:focus { outline: none; }
+    .xfr-slider::-webkit-slider-runnable-track {
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(to right, var(--skb-primary) 0, var(--skb-primary) var(--fill), var(--skb-border) var(--fill));
+    }
+    .xfr-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      margin-top: -6px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid var(--skb-primary);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .xfr-slider:hover::-webkit-slider-thumb { transform: scale(1.1); }
+    .xfr-slider:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px color-mix(in srgb, var(--skb-primary) 35%, transparent); }
+    .xfr-slider::-moz-range-track { height: 6px; border-radius: 999px; background: var(--skb-border); }
+    .xfr-slider::-moz-range-progress { height: 6px; border-radius: 999px; background: var(--skb-primary); }
+    .xfr-slider::-moz-range-thumb {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid var(--skb-primary);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+    }
+    .xfr-slider-scale {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-top: 0.45rem;
+      font-size: 0.72rem;
+      color: var(--skb-text-dim);
+    }
+    @media (max-width: 600px) {
+      .xfr-settings-row { grid-template-columns: 1fr; }
+    }
+
+    /* ---- Output Descriptor: address export row ---- */
+#desc-addr-export { margin-top: 0.5rem; }
+/* The count field drops below the button when there isn't room for both. */
+.desc-addr-export-row { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: stretch; }
+.desc-addr-export-row .skb-btn { flex: 1 1 11.5rem; font-size: 0.8125rem; white-space: nowrap; padding-left: 0.5rem; padding-right: 0.5rem; }
+.desc-addr-count-label { display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; color: var(--skb-text-muted); white-space: nowrap; }
+.desc-addr-count-label input { width: 5rem; font-family: var(--skb-mono); font-size: 0.8125rem; padding: 0.4rem 0.5rem; margin: 0; }
+
+/* ---- Cards (skb-card global override) ---- */
     .skb-card {
       border-radius: 0;
       border: 2px solid var(--skb-border);
@@ -8175,7 +8358,7 @@ https://github.com/browserify/crypto-browserify`)},e.constants={DH_CHECK_P_NOT_S
                 <h2>No Master Seed Found</h2>
                 <p>This device does not have a master seed configured. Generate a fresh seed or restore one from your backup words to get started.</p>
                 <!-- Version stamp: filled in by build-offline.mjs (see seed-xor-tool/VERSION). -->
-                <div class="welcome-version" data-skv-version style="margin-top: 0.75rem; font-family: var(--skb-mono); font-size: 0.75rem; letter-spacing: 0.04em; color: var(--skb-text-dim, var(--skb-text-muted));">v1.39 · build 208 · 5e61253 · 2026-10-10 · demo</div>
+                <div class="welcome-version" data-skv-version style="margin-top: 0.75rem; font-family: var(--skb-mono); font-size: 0.75rem; letter-spacing: 0.04em; color: var(--skb-text-dim, var(--skb-text-muted));">v1.41 · build 223 · a1431b9 · 2026-10-12 · demo</div>
             </div>
 
             <div class="welcome-actions" id="welcome-buttons">
@@ -9019,7 +9202,7 @@ https://github.com/browserify/crypto-browserify`)},e.constants={DH_CHECK_P_NOT_S
                 <div class="dash-footer-inner">
                     <div class="dash-footer-brand">
                         <span>SafeKeepVault</span>
-                        <span class="version" id="dash-version" data-skv-version>v1.39 · build 208 · 5e61253 · 2026-10-10 · demo</span>
+                        <span class="version" id="dash-version" data-skv-version>v1.41 · build 223 · a1431b9 · 2026-10-12 · demo</span>
                     </div>
                     <button type="button" class="dash-power-btn" onclick="skui_openPowerOptions()" title="Power Options">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
@@ -10150,9 +10333,15 @@ https://github.com/browserify/crypto-browserify`)},e.constants={DH_CHECK_P_NOT_S
                         <label style="font-size: 0.875rem; font-weight: 600; color: var(--skb-primary);">Key 1 — This Device</label>
                         <span style="font-family: var(--skb-mono); font-size: 0.6875rem; color: var(--skb-text-muted);" id="desc-ms-local-fp"></span>
                     </div>
-                    <div id="desc-ms-local-status" style="font-size: 0.8125rem; color: var(--skb-text-muted); padding: 0.75rem; background: var(--skb-bg-input); border-radius: var(--skb-radius-sm); border: 1px solid var(--skb-border); font-family: var(--skb-mono); word-break: break-all;">
-                        No master seed loaded. Key 1 will be auto-derived from your session seed.
+                    <label style="font-size: 0.8125rem; color: var(--skb-text-muted); display: block; margin-bottom: 0.35rem;">Extended Public Key</label>
+                    <div style="display: flex; gap: 0.5rem; align-items: stretch;">
+                        <div id="desc-ms-local-status" style="flex: 1; min-width: 0; font-size: 0.8125rem; color: var(--skb-text-muted); padding: 0.5rem 0.75rem; background: var(--skb-bg-input); border-radius: var(--skb-radius-sm); border: 1px solid var(--skb-border); font-family: var(--skb-mono); word-break: break-all;">
+                            No master seed loaded. Key 1 will be auto-derived from your session seed.
+                        </div>
+                        <button type="button" class="skb-btn" id="desc-ms-local-copy" onclick="desc_copyLocalKey()" disabled
+                                style="font-size: 0.75rem; padding: 0.3rem 0.75rem;">Copy</button>
                     </div>
+                    <div style="margin-top: 0.35rem; font-size: 0.75rem; color: var(--skb-text-muted);">Worked out from your seed (and passphrase, if any). Give this to the other cosigners' wallets.</div>
                     <div style="margin-top: 0.75rem;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
                             <label style="font-size: 0.8125rem; color: var(--skb-text-muted);">Optional Passphrase (BIP-39)</label>
@@ -10167,9 +10356,9 @@ https://github.com/browserify/crypto-browserify`)},e.constants={DH_CHECK_P_NOT_S
                         </div>
                         <div id="desc-ms-lib-dropdown" style="display: none; margin-bottom: 0.5rem; padding: 0.5rem; background: var(--skb-bg-card); border: 1px solid var(--skb-primary); border-radius: var(--skb-radius-sm); max-height: 180px; overflow-y: auto;"></div>
                         <div style="display: flex; gap: 0.5rem; align-items: center;">
-                            <input type="password" id="desc-ms-passphrase" autocomplete="off" spellcheck="false"
+                            <input type="password" id="desc-ms-passphrase" autocomplete="off" spellcheck="false" oninput="desc_updateLocalKeyStatus()"
                                    style="flex: 1; box-sizing: border-box; padding: 0.5rem 0.75rem; background: var(--skb-bg-input); border: 1px solid var(--skb-border); border-radius: var(--skb-radius-sm); font-family: var(--skb-mono); font-size: 0.875rem; color: var(--skb-text);">
-                            <button type="button" class="skb-btn" onclick="document.getElementById('desc-ms-passphrase').value=''"
+                            <button type="button" class="skb-btn" onclick="document.getElementById('desc-ms-passphrase').value=''; desc_updateLocalKeyStatus()"
                                     style="padding: 0.4rem 0.75rem; font-size: 0.75rem; font-family: var(--skb-mono); border: 1px dashed var(--skb-border); background: transparent; color: var(--skb-text-muted); white-space: nowrap;">CLEAR</button>
                         </div>
                     </div>
@@ -10274,6 +10463,20 @@ https://github.com/browserify/crypto-browserify`)},e.constants={DH_CHECK_P_NOT_S
 
                     <button type="button" class="skb-btn" style="width: 100%; margin-top: 1rem; font-size: 0.8125rem; border: 1px dashed var(--skb-border);" onclick="desc_printPDF()">Print PDF</button>
                     <button type="button" class="skb-btn" style="width: 100%; margin-top: 0.5rem; font-size: 0.8125rem;" onclick="desc_exportTxt()">Export Descriptor (.txt)</button>
+                    <!-- Address list export (CSV). Hidden for Silent Payments, which have one static address. -->
+                    <div id="desc-addr-export">
+                        <div class="desc-addr-export-row">
+                            <button type="button" class="skb-btn" id="desc-addr-export-btn" onclick="desc_exportAddresses()">Export Addresses (.csv)</button>
+                            <label class="desc-addr-count-label" for="desc-addr-count">How many
+                                <input type="number" id="desc-addr-count" class="skb-input" min="1" max="10000" step="1" value="100" inputmode="numeric" aria-describedby="desc-addr-export-hint">
+                            </label>
+                        </div>
+                        <label style="display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.75rem; color: var(--skb-text-muted); margin-top: 0.5rem; cursor: pointer;">
+                            <input type="checkbox" id="desc-addr-change" style="margin-top: 0.15rem;">
+                            <span>Also export the same number of change addresses</span>
+                        </label>
+                        <div id="desc-addr-export-hint" style="font-size: 0.75rem; color: var(--skb-text-dim); margin-top: 0.25rem;">Always starts at the wallet's first address (index 0). Up to 10,000. Saved as a .csv list (index, chain, path, address) for spreadsheets and watch-only tools. Holds addresses only, no keys.</div>
+                    </div>
                     <!-- Bitcoin Core watch-only export (importdescriptors JSON) -->
                     <button type="button" class="skb-btn" style="width: 100%; margin-top: 0.5rem; font-size: 0.8125rem;" onclick="desc_exportCore()">Export for Bitcoin Core (.json)</button>
                     <label style="display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.75rem; color: var(--skb-text-muted); margin-top: 0.5rem; cursor: pointer;">
@@ -10789,10 +10992,16 @@ bitcoin-cli -rpcwallet=safekeep-watch importdescriptors "$(cat SAFEKEEP-CORE-IMP
             <!-- ======== TRANSMIT TAB ======== -->
             <div id="xfr-tab-transmit" class="tool-tab-content active">
 
-                <!-- Mode Toggle -->
-                <div style="display: flex; gap: 0; margin-bottom: 1rem; border: 1px solid var(--skb-border); border-radius: var(--skb-radius-sm); overflow: hidden;">
-                    <button type="button" id="xfr-mode-file" class="tool-tab-btn active" style="flex: 1;" onclick="xfr_setMode('file')">File (Animated)</button>
-                    <button type="button" id="xfr-mode-text" class="tool-tab-btn" style="flex: 1;" onclick="xfr_setMode('text')">Text (Static)</button>
+                <!-- Mode Toggle (same design as the online Courier) -->
+                <div class="xfr-mode-select" role="group" aria-label="Transmit mode">
+                    <button type="button" id="xfr-mode-file" class="xfr-mode-option active" aria-pressed="true" onclick="xfr_setMode('file')">
+                        <svg class="xfr-mode-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        <span class="xfr-mode-text"><span class="xfr-mode-title">File</span><span class="xfr-mode-sub">Animated QR loop</span></span>
+                    </button>
+                    <button type="button" id="xfr-mode-text" class="xfr-mode-option" aria-pressed="false" onclick="xfr_setMode('text')">
+                        <svg class="xfr-mode-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        <span class="xfr-mode-text"><span class="xfr-mode-title">Text / password</span><span class="xfr-mode-sub">Single static QR</span></span>
+                    </button>
                 </div>
 
                 <!-- FILE MODE -->
@@ -10803,9 +11012,18 @@ bitcoin-cli -rpcwallet=safekeep-watch importdescriptors "$(cat SAFEKEEP-CORE-IMP
                              .pdf added so the Courier can shuttle scanned recovery sheets / printed
                              cosigner descriptors across the air gap. application/pdf MIME is
                              ALSO listed because some browsers honor MIME over extension. -->
-                        <input type="file" id="xfr-file-input" accept=".7z,.psbt,.txt,.json,.pdf,application/x-7z-compressed,application/pdf,application/octet-stream"
-                               style="width: 100%; padding: 0.75rem; background: var(--skb-bg-input); border: 1px dashed var(--skb-primary); border-radius: var(--skb-radius-sm); cursor: pointer; color: var(--skb-text); font-size: 0.85rem;">
-                        <div id="xfr-file-info" style="display: none; margin-top: 0.5rem; padding: 0.6rem 0.75rem; background: var(--skb-bg-input); border: 1px solid var(--skb-success, #00c896); border-radius: var(--skb-radius-sm); font-family: var(--skb-mono); font-size: 0.82rem; color: var(--skb-success, #00c896);"></div>
+                        <!-- The real file input covers the zone invisibly, so clicking and
+                             dropping a file both use the browser's own file handling. -->
+                        <div class="xfr-file-drop" id="xfr-file-drop">
+                            <input type="file" id="xfr-file-input" accept=".7z,.psbt,.txt,.json,.pdf,.csv,application/x-7z-compressed,application/pdf,text/csv,application/octet-stream">
+                            <svg class="xfr-file-drop-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                            <span class="xfr-file-drop-text">
+                                <span class="xfr-file-drop-title" id="xfr-file-drop-title">Choose a file or drop it here</span>
+                                <span class="xfr-file-drop-sub" id="xfr-file-drop-sub">PSBT, 7z, TXT, JSON, CSV or PDF</span>
+                            </span>
+                        </div>
+                        <!-- Large-file warning (shown only when there is one) -->
+                        <div id="xfr-file-info" style="display: none; margin-top: 0.5rem; padding: 0.6rem 0.75rem; background: var(--skb-bg-input); border: 1px solid var(--skb-warning, #f59e0b); border-radius: var(--skb-radius-sm); font-size: 0.82rem; line-height: 1.5; color: var(--skb-warning, #f59e0b);"></div>
 
                         <!-- Unified File System: quick-pick from mounted transfer drive -->
                         <div id="xfr-drive-files" style="display: none; margin-top: 0.75rem;">
@@ -10824,30 +11042,28 @@ bitcoin-cli -rpcwallet=safekeep-watch importdescriptors "$(cat SAFEKEEP-CORE-IMP
                              inversion math is needed here (unlike the PSBT
                              Signer's ms-based slider). Readouts update live on
                              both oninput (drag) and onchange (release). -->
-                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                            <div style="flex: 1; min-width: 200px;">
-                                <label style="font-size: 0.75rem; color: var(--skb-text-dim); display: block; margin-bottom: 0.25rem;">Density (bytes/chunk)</label>
-                                <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                    <input type="range" id="xfr-chunk-size" value="500" min="50" max="800" step="50"
-                                           oninput="xfr_updateDensityReadout(this.value)"
-                                           onchange="xfr_updateDensityReadout(this.value)"
-                                           aria-label="QR fragment size in bytes per chunk"
-                                           style="flex: 1; min-width: 80px;">
-                                    <span id="xfr-chunk-size-value"
-                                          style="font-family: var(--skb-mono); color: var(--skb-text); min-width: 5.5em; text-align: right;">500 bytes</span>
+                        <div class="xfr-settings-row">
+                            <div class="xfr-slider-field">
+                                <div class="xfr-slider-head">
+                                    <label for="xfr-chunk-size">Density</label>
+                                    <span class="xfr-slider-value" id="xfr-chunk-size-value">500 bytes</span>
                                 </div>
+                                <input type="range" class="xfr-slider" id="xfr-chunk-size" value="500" min="50" max="800" step="50"
+                                       oninput="xfr_updateDensityReadout(this.value)"
+                                       onchange="xfr_updateDensityReadout(this.value)"
+                                       aria-label="QR fragment size in bytes per chunk">
+                                <div class="xfr-slider-scale" aria-hidden="true"><span>Easier to scan</span><span>Fewer frames</span></div>
                             </div>
-                            <div style="flex: 1; min-width: 200px;">
-                                <label style="font-size: 0.75rem; color: var(--skb-text-dim); display: block; margin-bottom: 0.25rem;">Speed (FPS)</label>
-                                <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                    <input type="range" id="xfr-fps" value="7" min="1" max="10" step="1"
-                                           oninput="xfr_updateSpeedReadout(this.value)"
-                                           onchange="xfr_updateSpeedReadout(this.value)"
-                                           aria-label="QR animation speed in frames per second"
-                                           style="flex: 1; min-width: 80px;">
-                                    <span id="xfr-fps-value"
-                                          style="font-family: var(--skb-mono); color: var(--skb-text); min-width: 5.5em; text-align: right;">7 FPS</span>
+                            <div class="xfr-slider-field">
+                                <div class="xfr-slider-head">
+                                    <label for="xfr-fps">Speed</label>
+                                    <span class="xfr-slider-value" id="xfr-fps-value">7 FPS</span>
                                 </div>
+                                <input type="range" class="xfr-slider" id="xfr-fps" value="7" min="1" max="10" step="1"
+                                       oninput="xfr_updateSpeedReadout(this.value)"
+                                       onchange="xfr_updateSpeedReadout(this.value)"
+                                       aria-label="QR animation speed in frames per second">
+                                <div class="xfr-slider-scale" aria-hidden="true"><span>More reliable</span><span>Faster</span></div>
                             </div>
                         </div>
                     </div>
@@ -31238,37 +31454,68 @@ function desc_updateMsAddrType() {
     var pathEl = document.getElementById('desc-ms-deriv-path');
     if (pathEl) pathEl.textContent = "m/48'/0'/0'/" + suffixMap[addrType];
     document.getElementById('desc-output').style.display = 'none';
+    desc_updateLocalKeyStatus();
 }
 
 // =============================================
 // MULTI-SIG: Show Key 1 (local device) status
 // =============================================
+var _descLocalKeySeq = 0;
+var _descLocalKey = '';
+
+// Key 1 = this device's BIP-48 account key, shown as the key origin string
+// that goes into the descriptor ([fingerprint/48'/0'/0'/2']xpub…).
+async function _descLocalKeyOrigin(seed, passphrase, addrType) {
+    var B = window.BtcMath;
+    var suffix = { '44': "0'", '49': "1'", '84': "2'" }[addrType] || "2'";
+    var path = "m/48'/0'/0'/" + suffix;
+    var root = B.HDKey.fromMasterSeed(await B.bip39.mnemonicToSeed(seed, passphrase), { public: 0x0488b21e, private: 0x0488ade4 });
+    var fp = root.fingerprint.toString(16).padStart(8, '0');
+    return { fingerprint: fp, origin: '[' + fp + '/' + path.replace('m/', '') + ']' + _descNormalizeXpub(root.derive(path).publicExtendedKey) };
+}
+
 function desc_updateLocalKeyStatus() {
     var seed = window.SeedSession?.get()?.mnemonic;
     var statusEl = document.getElementById('desc-ms-local-status');
     var fpEl = document.getElementById('desc-ms-local-fp');
+    var copyBtn = document.getElementById('desc-ms-local-copy');
     if (!statusEl) return;
+    var seq = ++_descLocalKeySeq;
+    _descLocalKey = '';
+    if (copyBtn) copyBtn.disabled = true;
 
-    if (seed) {
-        // Show a preview — derive the xpub asynchronously
-        statusEl.innerHTML = '<span style="color: var(--skb-secondary);">Session seed loaded (' + seed.trim().split(/\s+/).length + ' words). xpub will be auto-derived at generation time.</span>';
-        // Async fingerprint preview
-        (async function() {
-            try {
-                var bip39 = window.BtcMath?.bip39;
-                var HDKey = window.BtcMath?.HDKey;
-                if (!bip39 || !HDKey) return;
-                var pp = document.getElementById('desc-ms-passphrase')?.value || ''; // exact — never trim a BIP-39 passphrase
-                var seedBytes = await bip39.mnemonicToSeed(seed, pp);
-                var root = HDKey.fromMasterSeed(seedBytes, { public: 0x0488b21e, private: 0x0488ade4 });
-                var fp = root.fingerprint.toString(16).padStart(8, '0').toUpperCase();
-                if (fpEl) fpEl.textContent = fp;
-            } catch(_e2) {}
-        })();
-    } else {
-        statusEl.innerHTML = 'No master seed loaded. Generate or restore a seed first, then return here.';
+    if (!seed) {
+        statusEl.textContent = 'No master seed loaded. Generate or restore a seed first, then return here.';
+        statusEl.style.color = 'var(--skb-text-muted)';
         if (fpEl) fpEl.textContent = '';
+        return;
     }
+    statusEl.textContent = 'Working out your key\u2026';
+    statusEl.style.color = 'var(--skb-text-muted)';
+    (async function() {
+        try {
+            if (!window.BtcMath?.bip39 || !window.BtcMath?.HDKey) return;
+            var pp = document.getElementById('desc-ms-passphrase')?.value || ''; // exact — never trim a BIP-39 passphrase
+            var key = await _descLocalKeyOrigin(seed, pp, desc_state.msAddrType || document.getElementById('desc-ms-addr-type')?.value || '84');
+            if (seq !== _descLocalKeySeq) return;   // a newer passphrase / address type is being worked out
+            _descLocalKey = key.origin;
+            statusEl.textContent = key.origin;
+            statusEl.style.color = 'var(--skb-text)';
+            if (fpEl) fpEl.textContent = key.fingerprint.toUpperCase();
+            if (copyBtn) copyBtn.disabled = false;
+        } catch (e) {
+            if (seq !== _descLocalKeySeq) return;
+            statusEl.textContent = 'Couldn\u2019t work out your key: ' + e.message;
+            statusEl.style.color = 'var(--skb-danger)';
+        }
+    })();
+}
+
+function desc_copyLocalKey() {
+    if (!_descLocalKey) return;
+    navigator.clipboard.writeText(_descLocalKey).then(function() {
+        showStatus('Key 1 copied to clipboard.', 'success');
+    });
 }
 
 // =============================================
@@ -31470,6 +31717,7 @@ async function desc_generateSingle(bip39, wordlist, HDKey, btcSigner) {
         // address only.
         document.getElementById('desc-address-list').innerHTML =
             '<div style="margin-bottom: 0.3rem; word-break: break-all;">' + spAddress + '</div>';
+        _descShowAddrExport(false);
         document.getElementById('desc-output').style.display = 'block';
         document.getElementById('desc-qr-wrap').style.display = 'none';
         document.getElementById('desc-qr-toggle-btn').textContent = 'Show QR';
@@ -31538,6 +31786,7 @@ async function desc_generateSingle(bip39, wordlist, HDKey, btcSigner) {
         addrHtml = '<div style="color: var(--skb-text-muted); font-size: 0.8125rem;">Address preview requires btcSigner library.</div>';
     }
     document.getElementById('desc-address-list').innerHTML = addrHtml;
+    _descShowAddrExport(true);
 
     document.getElementById('desc-output').style.display = 'block';
     document.getElementById('desc-qr-wrap').style.display = 'none';
@@ -31614,6 +31863,14 @@ async function desc_generateMulti(bip39, wordlist, HDKey, btcSigner) {
         var fpInput = document.getElementById('desc-ms-fp-' + i);
         var userFP = fpInput ? fpInput.value.trim().toLowerCase().replace(/[^0-9a-f]/g, '') : '';
 
+        // Some wallets add the address path after the key (…/<0;1>/* or …/0/*).
+        // The descriptor adds /<0;1>/* itself, so drop it here; anything else
+        // after the xpub can't be used.
+        rawVal = rawVal.replace(/\/(?:<0;1>|0)\/\*$/, '');
+        if (/^(\[[^\]]*\])?[A-Za-z0-9]+[/]/.test(rawVal)) {
+            throw new Error('Co-signer Key ' + i + ' has a path after the xpub that can\u2019t be used. Enter just [fingerprint/path]xpub.');
+        }
+
         // Parse the key origin format: [fp/path]xpub...
         // If the user just pasted a bare xpub, wrap it with fingerprint (user-provided or placeholder)
         var keyOriginStr = '';
@@ -31654,6 +31911,20 @@ async function desc_generateMulti(bip39, wordlist, HDKey, btcSigner) {
             accountNodes.push(cosignerNode);
         } catch (decErr) {
             throw new Error('Co-signer Key ' + i + ': invalid xpub — ' + decErr.message);
+        }
+    }
+
+    // === Every key must be different ===
+    // The same key twice (the same QR scanned for two cosigners, or a
+    // cosigner that is this device's own key) makes a multisig whose
+    // addresses can't be built, and wallets read it as fewer keys.
+    for (var da = 0; da < accountNodes.length; da++) {
+        for (var db = da + 1; db < accountNodes.length; db++) {
+            if (desc_arraysEqual(accountNodes[da].publicKey, accountNodes[db].publicKey)) {
+                throw new Error(da === 0
+                    ? 'Key ' + (db + 1) + ' is the same key as Key 1 (this device). Scan Key ' + (db + 1) + '\u2019s xpub from the other cosigner\u2019s wallet.'
+                    : 'Key ' + (da + 1) + ' and Key ' + (db + 1) + ' are the same key. Each cosigner needs its own seed \u2014 scan Key ' + (db + 1) + ' again from the right wallet.');
+            }
         }
     }
 
@@ -31711,13 +31982,15 @@ async function desc_generateMulti(bip39, wordlist, HDKey, btcSigner) {
                 }
                 addrHtml += '<div style="margin-bottom: 0.3rem;"><span style="color: var(--skb-text-muted);">m/0/' + ai + '</span> &nbsp; ' + addr + '</div>';
             } catch (ae) {
-                addrHtml += '<div style="margin-bottom: 0.3rem; color: var(--skb-danger);">m/0/' + ai + ' — error</div>';
+                // Don't report a descriptor whose addresses can't be built as a success.
+                throw new Error('Address ' + ai + ' couldn\u2019t be worked out from these keys (' + ae.message + '). Check each co-signer\u2019s xpub.');
             }
         }
     } else {
         addrHtml = '<div style="color: var(--skb-text-muted); font-size: 0.8125rem;">Address preview requires btcSigner library and all co-signer keys.</div>';
     }
     document.getElementById('desc-address-list').innerHTML = addrHtml;
+    _descShowAddrExport(true);
 
     document.getElementById('desc-output').style.display = 'block';
     document.getElementById('desc-qr-wrap').style.display = 'none';
@@ -31787,35 +32060,54 @@ function desc_exportTxt() {
     _descSaveFile('CUSTOM-DESCRIPTOR-' + ts + '.txt', content, 'text/plain');
 }
 
-// Save an export: silently to the vault on the boot drive, otherwise as a
-// browser download. Success is reported through the global toast.
-function _descSaveFile(filename, content, mimeType) {
-    if (typeof _silentDownload === 'function' && typeof isBootDrive === 'function' && isBootDrive()) {
-        _silentDownload(filename, content);
-        // Sprint 22: route success through the global toast overlay
-        // instead of injecting into desc-export-status inline.
-        var s = document.getElementById('desc-export-status');
-        if (s) { s.textContent = ''; s.style.display = 'none'; }
-        showStatus('Exported ' + filename + ' to vault. Copy it to your transfer drive.', 'success');
-    } else {
-        var blob = new Blob([content], { type: mimeType });
-        var url = URL.createObjectURL(blob);
-        var a = document.createElement('a');
-        a.href = url;
-        a.download = filename;
-        a.rel = 'noopener';
-        a.style.display = 'none';
-        document.body.appendChild(a);
+// Save an export to the Transfer Drive, where the Transfer Hub and the
+// Archive can see it. On the boot drive the drive must be mounted: the file
+// is never written into the vault, where nothing could send it on. Without
+// the boot drive (dev / demo build) and no drive mounted, it's a browser
+// download. An earlier file with the same name is never overwritten.
+async function _descSaveFile(filename, content, mimeType) {
+    var s = document.getElementById('desc-export-status');
+    if (s) { s.textContent = ''; s.style.display = 'none'; }
+    var drive = window.vaultTransferDriveHandle;
+    if (drive) {
         try {
-            a.click();
-        } finally {
-            if (a.parentNode) a.parentNode.removeChild(a);
-            setTimeout(function() { URL.revokeObjectURL(url); }, 0);
+            var name = (typeof _armResolveUniqueFilename === 'function')
+                ? await _armResolveUniqueFilename(drive, filename) : filename;
+            var fh = await drive.getFileHandle(name, { create: true });
+            var w = await fh.createWritable();
+            await w.write(content);
+            await w.close();
+            showStatus('Saved ' + name + ' to the Transfer Drive. Send it from the Transfer Hub.', 'success');
+            if (typeof archive_refresh === 'function') {
+                try { await archive_refresh(); } catch (_) { /* non-fatal */ }
+            }
+            return true;
+        } catch (e) {
+            showStatus('Saving to the Transfer Drive failed: ' + (e && e.message ? e.message : String(e)), 'error');
+            return false;
         }
-        var s2 = document.getElementById('desc-export-status');
-        if (s2) { s2.textContent = ''; s2.style.display = 'none'; }
-        showStatus('Download started: ' + filename, 'success');
     }
+    var os = window.SafeKeepOS;
+    if (os && typeof os.isBootDrive === 'function' && os.isBootDrive()) {
+        showStatus('Transfer Drive not mounted. Go back to the Dashboard, click Mount Transfer Drive, then export again.', 'error');
+        return false;
+    }
+    var blob = new Blob([content], { type: mimeType });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.rel = 'noopener';
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    try {
+        a.click();
+    } finally {
+        if (a.parentNode) a.parentNode.removeChild(a);
+        setTimeout(function() { URL.revokeObjectURL(url); }, 0);
+    }
+    showStatus('Download started: ' + filename, 'success');
+    return true;
 }
 
 // Bitcoin Core watch-only export: an `importdescriptors` JSON array with the
@@ -31843,6 +32135,125 @@ function desc_exportCore() {
     var help = document.getElementById('desc-core-help');
     if (help) help.open = true;
     _descSaveFile(filename, JSON.stringify(requests, null, 2) + '\n', 'application/json');
+}
+
+// Address list export: the first N receive (and optionally change) addresses
+// of the current descriptor as CSV. Addresses are worked out from the
+// descriptor itself with the Wallet Record's parser, so every shape the
+// tool builds is covered, and the first ones are checked against the list
+// on screen before anything is saved.
+var DESC_ADDR_EXPORT_MAX = 10000;
+
+function _descShowAddrExport(show) {
+    var box = document.getElementById('desc-addr-export');
+    if (box) box.style.display = show ? 'block' : 'none';
+}
+
+/* Account-level nodes of a parsed descriptor, walked down to one chain
+   (0 = receive, 1 = change) so each address is a single deriveChild(i).
+   Returns null if a key's path has no such chain (e.g. fixed …/0/*). */
+function _descChainNodes(keys, chain) {
+    var HDKey = window.BtcMath.HDKey;
+    var nodes = [];
+    for (var k = 0; k < keys.length; k++) {
+        var node = HDKey.fromExtendedKey(_descNormalizeXpub(keys[k].xpub));
+        var steps = (keys[k].wildcardSuffix || '').split('/').filter(Boolean);
+        if (steps[steps.length - 1] !== '*') throw new Error('key ' + (k + 1) + ' has no …/* address range');
+        for (var i = 0; i < steps.length - 1; i++) {
+            var mp = /^<(\d+);(\d+)>$/.exec(steps[i]);
+            var idx;
+            if (mp) idx = parseInt(chain === 0 ? mp[1] : mp[2], 10);
+            else if (/^\d+$/.test(steps[i])) {
+                idx = parseInt(steps[i], 10);
+                // A fixed …/0/* is the receive chain only.
+                if (i === steps.length - 2 && chain !== 0) return null;
+            } else throw new Error('step "' + steps[i] + '" can’t be derived from a public key');
+            node = node.deriveChild(idx);
+        }
+        nodes.push(node);
+    }
+    return nodes;
+}
+
+/* Rows [index, chain, path, address] for indexes 0 … count-1 of one chain. */
+async function _descChainAddresses(parsed, chain, count, onProgress) {
+    var nodes = _descChainNodes(parsed.keys, chain);
+    if (!nodes) return null;
+    var rows = [];
+    for (var i = 0; i < count; i++) {
+        var pubs = nodes.map(function(n) { return n.deriveChild(i).publicKey; });
+        rows.push([i, chain === 0 ? 'receive' : 'change', chain + '/' + i,
+                   _wrecAddressFromPubkeys(parsed.kind, parsed.sorted, parsed.msM, pubs)]);
+        if (i % 200 === 199) {
+            if (onProgress) onProgress(rows.length);
+            await new Promise(function(r) { setTimeout(r, 0); });   // keep the page responsive
+        }
+    }
+    return rows;
+}
+
+/* Addresses on screen ("m/0/i  address" rows), in order. */
+function _descScreenAddresses() {
+    var list = document.getElementById('desc-address-list');
+    if (!list) return [];
+    return Array.prototype.map.call(list.querySelectorAll('div'), function(d) {
+        var parts = d.textContent.trim().split(/\s+/);
+        return parts[parts.length - 1];
+    });
+}
+
+async function desc_exportAddresses() {
+    if (!desc_state.currentDescriptor) {
+        showStatus('No descriptor to export. Generate one first.', 'error');
+        return;
+    }
+    var countEl = document.getElementById('desc-addr-count');
+    var raw = countEl ? String(countEl.value).trim() : '';
+    var count = /^\d+$/.test(raw) ? parseInt(raw, 10) : NaN;
+    if (!(count >= 1 && count <= DESC_ADDR_EXPORT_MAX)) {
+        showStatus('Enter how many addresses to export: a whole number from 1 to 10,000.', 'error');
+        if (countEl) countEl.focus();
+        return;
+    }
+    var withChange = !!(document.getElementById('desc-addr-change') || {}).checked;
+
+    var parsed = _wrecParseDescriptor(desc_state.currentDescriptor);
+    if (!parsed.ok) { showStatus(parsed.error || 'This descriptor couldn’t be read.', 'error'); return; }
+    if (parsed.kind === 'sp') { showStatus('A Silent Payment wallet has a single static address, shown above. There is no list to export.', 'error'); return; }
+    if (parsed.addressNote) { showStatus(parsed.addressNote, 'error'); return; }
+
+    var btn = document.getElementById('desc-addr-export-btn');
+    var label = btn ? btn.textContent : '';
+    var total = count * (withChange ? 2 : 1);
+    if (btn) btn.disabled = true;
+    try {
+        var done = 0;
+        var progress = function(n) { if (btn) btn.textContent = 'Working out addresses… ' + Math.floor((done + n) / total * 100) + '%'; };
+        var receive = await _descChainAddresses(parsed, 0, count, progress);
+        done = count;
+        var change = [];
+        if (withChange) {
+            change = await _descChainAddresses(parsed, 1, count, progress);
+            if (!change) throw new Error('This descriptor has no change chain (its keys end in a fixed …/0/*). Untick the change addresses option.');
+        }
+
+        // Safety net: the first receive addresses must match the ones on screen.
+        var screen = _descScreenAddresses();
+        for (var s = 0; s < Math.min(screen.length, receive.length); s++) {
+            if (screen[s] !== receive[s][3]) {
+                throw new Error('Address ' + s + ' doesn’t match the one shown above, so nothing was saved. Generate the descriptor again and retry.');
+            }
+        }
+
+        var lines = ['index,chain,path,address'];
+        receive.concat(change).forEach(function(r) { lines.push(r.join(',')); });
+        var ts = new Date().toISOString().replace(/[:\-T]/g, '').slice(0, 14);
+        await _descSaveFile('SAFEKEEP-ADDRESSES-' + ts + '.csv', lines.join('\n') + '\n', 'text/csv');
+    } catch (e) {
+        showStatus('Address export failed: ' + e.message, 'error');
+    } finally {
+        if (btn) { btn.disabled = false; btn.textContent = label; }
+    }
 }
 
 function desc_toggleQR() {
@@ -33952,6 +34363,8 @@ function xfr_setMode(mode) {
     xfr_state.mode = mode;
     document.getElementById('xfr-mode-file').classList.toggle('active', mode === 'file');
     document.getElementById('xfr-mode-text').classList.toggle('active', mode === 'text');
+    document.getElementById('xfr-mode-file').setAttribute('aria-pressed', String(mode === 'file'));
+    document.getElementById('xfr-mode-text').setAttribute('aria-pressed', String(mode === 'text'));
     document.getElementById('xfr-file-section').style.display = mode === 'file' ? 'block' : 'none';
     document.getElementById('xfr-text-section').style.display = mode === 'text' ? 'block' : 'none';
 
@@ -33980,6 +34393,27 @@ function xfr_togglePwd(inputId, btn) {
     }
 }
 
+// Make `file` the one to transmit and show it in the drop zone. Shared by
+// the file picker, the Transfer Drive quick-pick and hand-offs from other
+// tools. The box under the zone appears only for a large-file warning.
+function _xfrShowLoadedFile(file) {
+    xfr_state.originalFile = file;
+    var startBtn = document.getElementById('xfr-start-btn');
+    if (startBtn) startBtn.disabled = false;
+    var title = document.getElementById('xfr-file-drop-title');
+    if (title) title.textContent = file.name;
+    var sub = document.getElementById('xfr-file-drop-sub');
+    if (sub) sub.textContent = (file.size / 1024).toFixed(2) + ' KB \u00b7 click or drop to change';
+    var drop = document.getElementById('xfr-file-drop');
+    if (drop) drop.classList.add('has-file');
+    var infoBox = document.getElementById('xfr-file-info');
+    if (infoBox) {
+        var warn = _xfrSizeWarning(file);
+        infoBox.textContent = warn.trim();
+        infoBox.style.display = warn ? 'block' : 'none';
+    }
+}
+
 // --- File input handler ---
 (function() {
     var fileInput = document.getElementById('xfr-file-input');
@@ -33987,23 +34421,16 @@ function xfr_togglePwd(inputId, btn) {
         fileInput.addEventListener('change', function(e) {
             var file = e.target.files[0];
             if (!file) return;
-            xfr_state.originalFile = file;
-            document.getElementById('xfr-start-btn').disabled = false;
-            var infoBox = document.getElementById('xfr-file-info');
-            var sizeKB = (file.size / 1024).toFixed(2);
-            var warn = _xfrSizeWarning(file);
-            infoBox.textContent = 'Loaded: ' + file.name + ' (' + sizeKB + ' KB)' + warn;
-            // Tint the info box amber when we're warning the user; reset to
-            // green-success styling otherwise so the visual cue tracks state.
-            if (warn) {
-                infoBox.style.borderColor = 'var(--skb-warning, #f59e0b)';
-                infoBox.style.color = 'var(--skb-warning, #f59e0b)';
-            } else {
-                infoBox.style.borderColor = 'var(--skb-success, #00c896)';
-                infoBox.style.color = 'var(--skb-success, #00c896)';
-            }
-            infoBox.style.display = 'block';
+            _xfrShowLoadedFile(file);
         });
+    }
+    // Highlight the drop zone while a file is dragged over it
+    var drop = document.getElementById('xfr-file-drop');
+    if (drop) {
+        var depth = 0;
+        drop.addEventListener('dragenter', function() { depth++; drop.classList.add('is-dragover'); });
+        drop.addEventListener('dragleave', function() { if (--depth <= 0) { depth = 0; drop.classList.remove('is-dragover'); } });
+        drop.addEventListener('drop', function() { depth = 0; drop.classList.remove('is-dragover'); });
     }
 })();
 
@@ -34011,7 +34438,7 @@ function xfr_togglePwd(inputId, btn) {
 // When the transfer drive is mounted via The Archive, populate a quick-pick
 // list so the user can select files without opening the OS dialog at all.
 // .pdf added (kept in sync with the file-input `accept` attribute above).
-var XFR_ALLOWED_EXT = /\.(7z|psbt|txt|json|pdf)$/i;
+var XFR_ALLOWED_EXT = /\.(7z|psbt|txt|json|pdf|csv)$/i;
 
 // Soft size thresholds for the size-warning logic in the file-load handlers.
 // No hard cap — the chunker is purely byte-based and any size in principle
@@ -34098,20 +34525,7 @@ async function xfr_populateDriveFiles() {
 
             try {
                 var file = await entry.handle.getFile();
-                xfr_state.originalFile = file;
-                document.getElementById('xfr-start-btn').disabled = false;
-                var infoBox = document.getElementById('xfr-file-info');
-                var sizeKB = (file.size / 1024).toFixed(2);
-                var warn = _xfrSizeWarning(file);
-                infoBox.textContent = 'Loaded: ' + file.name + ' (' + sizeKB + ' KB)' + warn;
-                if (warn) {
-                    infoBox.style.borderColor = 'var(--skb-warning, #f59e0b)';
-                    infoBox.style.color = 'var(--skb-warning, #f59e0b)';
-                } else {
-                    infoBox.style.borderColor = 'var(--skb-success, #00c896)';
-                    infoBox.style.color = 'var(--skb-success, #00c896)';
-                }
-                infoBox.style.display = 'block';
+                _xfrShowLoadedFile(file);
 
                 // Visual highlight on the selected button
                 var allBtns = listDiv.querySelectorAll('[data-xfr-drive-idx]');
@@ -34260,12 +34674,27 @@ function xfr_sendChunk(chunk, index, total) {
 function xfr_updateDensityReadout(v) {
     var el = document.getElementById('xfr-chunk-size-value');
     if (el) el.textContent = v + ' bytes';
+    _xfrUpdateSliderFill(document.getElementById('xfr-chunk-size'));
 }
 
 function xfr_updateSpeedReadout(v) {
     var el = document.getElementById('xfr-fps-value');
     if (el) el.textContent = v + ' FPS';
+    _xfrUpdateSliderFill(document.getElementById('xfr-fps'));
 }
+
+// Orange fill from the left end of a range slider up to its thumb
+function _xfrUpdateSliderFill(el) {
+    if (!el) return;
+    var min = parseFloat(el.min) || 0, max = parseFloat(el.max) || 100;
+    el.style.setProperty('--fill', ((el.value - min) / (max - min) * 100) + '%');
+}
+function _xfrInitSliderFills() {
+    _xfrUpdateSliderFill(document.getElementById('xfr-chunk-size'));
+    _xfrUpdateSliderFill(document.getElementById('xfr-fps'));
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', _xfrInitSliderFills);
+else _xfrInitSliderFills();
 
 // Start the animated loop
 async function xfr_startTransmit() {
@@ -36581,23 +37010,7 @@ async function archive_transmit(idx) {
 
         // Inject the payload — mirrors xfr_populateDriveFiles click
         // handler so the Courier Tool is ready to press "START".
-        xfr_state.originalFile = file;
-        var startBtn = document.getElementById('xfr-start-btn');
-        if (startBtn) startBtn.disabled = false;
-        var infoBox = document.getElementById('xfr-file-info');
-        if (infoBox) {
-            var sizeKB = (file.size / 1024).toFixed(2);
-            var warn = (typeof _xfrSizeWarning === 'function') ? _xfrSizeWarning(file) : '';
-            infoBox.textContent = 'Loaded: ' + file.name + ' (' + sizeKB + ' KB)' + warn;
-            if (warn) {
-                infoBox.style.borderColor = 'var(--skb-warning, #f59e0b)';
-                infoBox.style.color = 'var(--skb-warning, #f59e0b)';
-            } else {
-                infoBox.style.borderColor = 'var(--skb-success, #00c896)';
-                infoBox.style.color = 'var(--skb-success, #00c896)';
-            }
-            infoBox.style.display = 'block';
-        }
+        _xfrShowLoadedFile(file);
     } catch (err) {
         showStatus('Transmit failed: ' + err.message, 'error');
     }
@@ -36726,14 +37139,15 @@ var _WREC_SCRIPTS = {
    Read everything the record needs from an output descriptor.
    Returns { ok, error, warnings[], descriptor (newlines removed),
    isMulti, msM, msN, script, keys[{fingerprint, path, xpub,
-   wildcardSuffix}], firstAddress, addressNote }. Covers every shape
+   wildcardSuffix}], firstAddress, addressNote, kind (key of
+   _WREC_SCRIPTS), sorted (sortedmulti) }. Covers every shape
    the Output Descriptor tool produces plus common wallet exports:
    wpkh, sh(wpkh), pkh, tr (key path only), sp, and multi /
    sortedmulti inside wsh, sh(wsh) or sh.
    ---------------------------------------------------------------- */
 function _wrecParseDescriptor(raw) {
     var out = { ok: false, error: '', warnings: [], descriptor: '', isMulti: false, msM: 1, msN: 1,
-                script: '', keys: [], firstAddress: '', addressNote: '' };
+                script: '', keys: [], firstAddress: '', addressNote: '', kind: '', sorted: false };
     var d = (raw || '').replace(/[\r\n]+/g, '').trim();
     out.descriptor = d;
     if (!d) return out;
@@ -36813,8 +37227,10 @@ function _wrecParseDescriptor(raw) {
         out.ok = true;
         return out;
     }
+    out.kind = kind;
+    out.sorted = node.fn === 'sortedmulti';
     try {
-        out.firstAddress = _wrecFirstAddress(kind, node.fn === 'sortedmulti', out.msM, out.keys);
+        out.firstAddress = _wrecFirstAddress(kind, out.sorted, out.msM, out.keys);
     } catch (e) {
         out.addressNote = 'Couldn’t work out the first address (' + e.message + '). You can type it in.';
     }
@@ -36855,12 +37271,17 @@ function _wrecFirstAddress(kind, sorted, m, keys) {
         var sp = SP.decodeSpscan(keys[0].xpub);
         return SP.encodeSilentPaymentAddress(B.secp256k1.getPublicKey(sp.scanPrivKey, true), sp.spendPubKey);
     }
-    var pubs = keys.map(_wrecIndexZeroPubkey);
+    return _wrecAddressFromPubkeys(kind, sorted, m, keys.map(_wrecIndexZeroPubkey));
+}
+
+/* Address for one set of child public keys (one per descriptor key). */
+function _wrecAddressFromPubkeys(kind, sorted, m, pubs) {
+    var signer = window.BtcMath.btcSigner;
     if (kind === 'wpkh')    return signer.p2wpkh(pubs[0]).address;
     if (kind === 'sh/wpkh') return signer.p2sh(signer.p2wpkh(pubs[0])).address;
     if (kind === 'pkh')     return signer.p2pkh(pubs[0]).address;
     if (kind === 'tr')      return signer.p2tr(pubs[0].slice(1)).address;
-    if (sorted) pubs.sort(_wrecCompareBytes);
+    if (sorted) pubs = pubs.slice().sort(_wrecCompareBytes);
     var ms = signer.p2ms(m, pubs);
     if (kind === 'wsh/multi')    return signer.p2wsh(ms).address;
     if (kind === 'sh-wsh/multi') return signer.p2sh(signer.p2wsh(ms)).address;
