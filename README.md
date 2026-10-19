@@ -15,16 +15,16 @@ This repository only hosts the online demo of [SafeKeepVault](https://github.com
 
 ## This build
 
-- Version stamp: `v1.46 · build 272 · a24a498 · 2026-10-17 · demo`
-- Built from SafeKeepVault release [`v1.46`](https://github.com/Pasalon0404/SafeKeepVault/releases/tag/v1.46) (commit `a24a498`)
-- SHA-256 of `index.html`: `6b7f62a0df66e377d5e41ff2e6a84127652d74b48541d5488fb1f271540a4fe4`
+- Version stamp: `v1.47 · build 291 · 1ddc94b · 2026-10-19 · demo`
+- Built from SafeKeepVault release [`v1.47`](https://github.com/Pasalon0404/SafeKeepVault/releases/tag/v1.47) (commit `1ddc94b`)
+- SHA-256 of `index.html`: `fbfa5e3116c1118148cce1407b3a158a401e996d524dcd258e51daf6ee00f00e`
 
 To rebuild it yourself:
 
 ```sh
 git clone https://github.com/Pasalon0404/SafeKeepVault.git
 cd SafeKeepVault
-git checkout v1.46
+git checkout v1.47
 cd seed-xor-tool
 npm ci
 npm run build:demo
