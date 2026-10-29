@@ -15,16 +15,16 @@ This repository only hosts the online demo of [SafeKeepVault](https://github.com
 
 ## This build
 
-- Version stamp: `v1.56 · build 413 · 50a4635 · 2026-10-28 · demo`
-- Built from SafeKeepVault `main` at commit [`50a4635`](https://github.com/Pasalon0404/SafeKeepVault/commit/50a4635): release [`v1.56`](https://github.com/Pasalon0404/SafeKeepVault/releases/tag/v1.56) plus [PR #85](https://github.com/Pasalon0404/SafeKeepVault/pull/85), a demo-only fix so slow phones open on the demo seed instead of the setup screen
-- SHA-256 of `index.html`: `016f01b55e9226838af484d3e0d76188c6b9a40b4acaa99c5cd4e2dc6da5795e`
+- Version stamp: `v1.56 · build 415 · 9d36cf2 · 2026-10-28 · demo`
+- Built from SafeKeepVault `main` at commit [`9d36cf2`](https://github.com/Pasalon0404/SafeKeepVault/commit/9d36cf2): release [`v1.56`](https://github.com/Pasalon0404/SafeKeepVault/releases/tag/v1.56) plus two demo-only changes: [PR #85](https://github.com/Pasalon0404/SafeKeepVault/pull/85) (slow phones open on the demo seed instead of the setup screen) and [PR #86](https://github.com/Pasalon0404/SafeKeepVault/pull/86) (the banner says the demo is a preview, not a working vault, and that the vault runs on a laptop or desktop)
+- SHA-256 of `index.html`: `9af1c58eac5e453ff7524ddd32e7be9881b57a8c28eddacd7dbd295ba153d340`
 
 To rebuild it yourself:
 
 ```sh
 git clone https://github.com/Pasalon0404/SafeKeepVault.git
 cd SafeKeepVault
-git checkout 50a4635
+git checkout 9d36cf2
 cd seed-xor-tool
 npm ci
 npm run build:demo
