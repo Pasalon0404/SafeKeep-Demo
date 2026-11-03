@@ -15,16 +15,16 @@ This repository only hosts the online demo of [SafeKeepVault](https://github.com
 
 ## This build
 
-- Version stamp: `v1.58 · build 445 · 934ec90 · 2026-11-02 · demo`
-- Built from SafeKeepVault release [`v1.58`](https://github.com/Pasalon0404/SafeKeepVault/releases/tag/v1.58) (commit [`934ec90`](https://github.com/Pasalon0404/SafeKeepVault/commit/934ec90)), which includes the demo changes from [PR #85](https://github.com/Pasalon0404/SafeKeepVault/pull/85) and [PR #86](https://github.com/Pasalon0404/SafeKeepVault/pull/86)
-- SHA-256 of `index.html`: `17f3d9f9a9c04f846d8602811f22f3a1515dff350d4c0023ebe429b48daf062e`
+- Version stamp: `v1.59 · build 460 · 069d482 · 2026-11-03 · demo`
+- Built from SafeKeepVault release [`v1.59`](https://github.com/Pasalon0404/SafeKeepVault/releases/tag/v1.59) (commit [`069d482`](https://github.com/Pasalon0404/SafeKeepVault/commit/069d482)), which includes the demo changes from [PR #85](https://github.com/Pasalon0404/SafeKeepVault/pull/85) and [PR #86](https://github.com/Pasalon0404/SafeKeepVault/pull/86)
+- SHA-256 of `index.html`: `b08447bb5464a8e00b634c30a0dc90d2f842696d1a43394065e0ab9f263ebe53`
 
 To rebuild it yourself:
 
 ```sh
 git clone https://github.com/Pasalon0404/SafeKeepVault.git
 cd SafeKeepVault
-git checkout v1.58
+git checkout v1.59
 cd seed-xor-tool
 npm ci
 npm run build:demo
