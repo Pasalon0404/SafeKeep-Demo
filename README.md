@@ -2,7 +2,7 @@
 
 This repository only hosts the online demo of [SafeKeepVault](https://github.com/Pasalon0404/SafeKeepVault) at **https://demo.safekeepbitcoin.com**. The source code lives in the SafeKeepVault repository; the files here are build output.
 
-**Do not use this demo with real bitcoin.** It runs in your web browser on an online computer. Only the public demo seeds work in it, and anything sent to a demo address can be taken by anyone. To protect real bitcoin, use the real vault, which runs offline from a USB stick: https://safekeepbitcoin.com/download.html
+**Do not use this demo with real bitcoin.** It runs in your web browser on an online computer. Only the public demo seeds work in it, and anything sent to a demo address can be taken by anyone. To protect real bitcoin, use the real vault, which runs offline from a USB flash drive: https://safekeepbitcoin.com/download.html
 
 ## What's here
 
@@ -15,16 +15,16 @@ This repository only hosts the online demo of [SafeKeepVault](https://github.com
 
 ## This build
 
-- Version stamp: `v1.65 · build 524 · 20cee62 · 2026-11-09 · demo`
-- Built from SafeKeepVault release [`v1.65`](https://github.com/Pasalon0404/SafeKeepVault/releases/tag/v1.65) (commit [`20cee62`](https://github.com/Pasalon0404/SafeKeepVault/commit/20cee62)), which includes the demo changes from [PR #85](https://github.com/Pasalon0404/SafeKeepVault/pull/85), [PR #86](https://github.com/Pasalon0404/SafeKeepVault/pull/86) and [PR #111](https://github.com/Pasalon0404/SafeKeepVault/pull/111)
-- SHA-256 of `index.html`: `43d03e7c1c9eb0e9ddf882a8c404c943bd44369e2cdcd51e9f72caf883b96fde`
+- Version stamp: `v1.66 · build 532 · 21e285c · 2026-11-12 · demo`
+- Built from SafeKeepVault release [`v1.66`](https://github.com/Pasalon0404/SafeKeepVault/releases/tag/v1.66) (commit [`21e285c`](https://github.com/Pasalon0404/SafeKeepVault/commit/21e285c)), which includes the demo changes from [PR #85](https://github.com/Pasalon0404/SafeKeepVault/pull/85), [PR #86](https://github.com/Pasalon0404/SafeKeepVault/pull/86) and [PR #111](https://github.com/Pasalon0404/SafeKeepVault/pull/111)
+- SHA-256 of `index.html`: `1990d33a6acc1dbdd6555bafa7e84c948e69996c95e4fe08948360a0a31eaaf2`
 
 To rebuild it yourself:
 
 ```sh
 git clone https://github.com/Pasalon0404/SafeKeepVault.git
 cd SafeKeepVault
-git checkout v1.65
+git checkout v1.66
 cd seed-xor-tool
 npm ci
 npm run build:demo
