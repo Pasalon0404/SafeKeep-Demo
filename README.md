@@ -15,16 +15,16 @@ This repository only hosts the online demo of [SafeKeepVault](https://github.com
 
 ## This build
 
-- Version stamp: `v1.67 · build 552 · 647a5b4 · 2026-11-16 · demo`
-- Built from SafeKeepVault release [`v1.67`](https://github.com/Pasalon0404/SafeKeepVault/releases/tag/v1.67) (commit [`647a5b4`](https://github.com/Pasalon0404/SafeKeepVault/commit/647a5b4)), which includes the demo changes from [PR #85](https://github.com/Pasalon0404/SafeKeepVault/pull/85), [PR #86](https://github.com/Pasalon0404/SafeKeepVault/pull/86) and [PR #111](https://github.com/Pasalon0404/SafeKeepVault/pull/111)
-- SHA-256 of `index.html`: `b89408b76c50d4e60fd331a1f90042a4ffc349a385d0a39de90aafd15feef6a7`
+- Version stamp: `v1.68 · build 583 · aa79837 · 2026-11-19 · demo`
+- Built from SafeKeepVault release [`v1.68`](https://github.com/Pasalon0404/SafeKeepVault/releases/tag/v1.68) (commit [`aa79837`](https://github.com/Pasalon0404/SafeKeepVault/commit/aa79837)), which includes the demo changes from [PR #85](https://github.com/Pasalon0404/SafeKeepVault/pull/85), [PR #86](https://github.com/Pasalon0404/SafeKeepVault/pull/86) and [PR #111](https://github.com/Pasalon0404/SafeKeepVault/pull/111)
+- SHA-256 of `index.html`: `4aa6675d0d448567aace12a7ca0499a070926f83beccbe5574b11b9df88b4d0f`
 
 To rebuild it yourself:
 
 ```sh
 git clone https://github.com/Pasalon0404/SafeKeepVault.git
 cd SafeKeepVault
-git checkout v1.67
+git checkout v1.68
 cd seed-xor-tool
 npm ci
 npm run build:demo
